@@ -1,4 +1,6 @@
 # created by virtualenv automatically
-/scripts/
-/lib/
+/django/scripts/
+/django/lib/
 /pyvenv.cfg/
+/node js/node_modules/
+/.gitignore

@@ -1,0 +1,36 @@
+
+body{
+    background-color: rgb(133, 143, 197);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* @font-face {
+        font-family: 'Aloevera';
+        src: url('Aloevera.ttf');
+    } */
+div{
+    background-color: rgb(32, 43, 99);
+    color: rgb(190, 192, 220);
+    padding: 25px;   
+    /* font: 15px baskerville old face;         */
+    font: 20px papyrus;
+    border-radius: 6px;
+    /* height: 75vh; */
+    min-height: 50vh; 
+    max-height: 75vh; 
+    overflow: auto;
+    width: 100%; 
+    max-width: 550px; 
+    margin: auto;
+    margin-top: 5%;
+    /* margin: 10% 20% 20% 25%; */
+   
+    /* font-family: 'Aloevera';
+    src: url('Aloevera.ttf'); */
+}
+div label{
+    font: 20px baskerville old face;
+    /* display: block;  */
+padding-left: 15px;
+}
