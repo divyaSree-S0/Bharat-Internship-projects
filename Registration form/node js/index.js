@@ -19,8 +19,10 @@ app.set('view engine','ejs');
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/',(req,res)=>
-res.render('registration'));
+app.get('/',(req,res)=>{
+    res.render('registration', { isSuccess: false });
+// res.render('registration')
+});
 
 app.post('/', async(req,res)=>{
     try{
@@ -32,13 +34,18 @@ app.post('/', async(req,res)=>{
             dob: req.body.dob
         });
         await newUser.save();
-        res.render('registration', { registrationSuccess: true });
+        // res.render('registration', { isSuccess: true });
+        res.redirect('/');
+        res.json({ success: true });
         // res.send('Thank you for registering');
         console.log(newUser,'saved');
     }
     catch(err){
         console.log(err);
-        res.render('registration', { registrationSuccess: false });
+        // res.render('registration', { isSuccess: false });
+        res.redirect('/');
+        res.json({ success: false });
+        
         // res.send('Sorry! Something went wrong.Please register again.');
     }
 });
