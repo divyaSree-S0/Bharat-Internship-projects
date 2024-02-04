@@ -1,6 +1,9 @@
 
-body{
-    background-color: rgb(133, 143, 197);
+body {
+    background-image: url('/Backgnd.jpg');
+    background-size: cover;
+    /* background-image: url('/Bkgd.jpg'); */
+    /* background-color: rgb(133, 143, 197); */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,27 +13,59 @@ body{
         src: url('Aloevera.ttf');
     } */
 div{
-    background-color: rgb(32, 43, 99);
-    color: rgb(190, 192, 220);
+    background-color: rgba(41, 13, 76, 0.692);
+    color: rgb(255, 255, 255);
     padding: 25px;   
     /* font: 15px baskerville old face;         */
     font: 20px papyrus;
     border-radius: 6px;
     /* height: 75vh; */
-    min-height: 50vh; 
+    min-height: 65vh; 
     max-height: 75vh; 
     overflow: auto;
     width: 100%; 
-    max-width: 550px; 
+    max-width: 525px; 
     margin: auto;
     margin-top: 5%;
+    margin-left: 43%;
     /* margin: 10% 20% 20% 25%; */
    
     /* font-family: 'Aloevera';
     src: url('Aloevera.ttf'); */
 }
 div label{
+    /* font-weight: bold; */
     font: 20px baskerville old face;
+    margin-right: 25px;
     /* display: block;  */
-padding-left: 15px;
+    padding-left: 15px;
+}
+div input {
+    /* width: 250px;
+    height: 35px; */
+    padding: 10px 100px 10px 0px;
+    background-color: rgba(31, 3, 66, 0.692); 
+    color: rgb(255, 255, 255);
+    border: none; 
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    /* width: 100%; */
+}
+div input[type="date"]{
+    padding: 10px 15px 10px 0px;
+}
+
+div button {
+    width: 75px;
+    height: 45px;
+    display: block; 
+    font-size: 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 20px auto 0;
+    background-color: rgb(74, 218, 86); 
+    color: rgb(255, 255, 255); 
+    border: none; /* Remove default border */
+}
+
+div input[type="text"]:not(:last-of-type) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5); /* Line between inputs */
 }
