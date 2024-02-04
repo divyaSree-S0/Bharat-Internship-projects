@@ -11,16 +11,35 @@
 <body>
         <div>
             <h1>Registration form</h1>
+            <hr style="border-top: 1px solid rgba(255, 255, 255, 0.756);">
+            <form action="/" method="POST">
             <label for="name">Name</label>
             <input type="text" name="name" id="name" placeholder=" Enter your name"><br><br>
+            <label for="name">Username</label>
+            <input type="text" name="username" id="username" placeholder=" Enter a username"><br><br>
             <label for="name">Password</label>
             <input type="password" name="password" id="password" placeholder=" Enter your password"><br><br>
             <label for="email">E-mail</label>
             <input type="text" name="email" id="email" placeholder=" Enter your email"><br><br>
             <label for="dob">Date of birth</label>
             <input type="date" name="dob" id="dob" placeholder=" Enter your date of birth"><br><br>
+            <hr style="border-top: 1px solid rgba(255, 255, 255, 0.756);">
             <button type="submit" name="submit" id="submit">Submit</button>
+            </form>
         </div>
+        <script>
+            function submitForm() {
+                // Assume you have a variable `registrationSuccess` that indicates success or failure
+                // Set this variable based on the actual success or failure in your backend response
+                var registrationSuccess = <%= registrationSuccess %>; // Variable from server-side
+    
+                if (registrationSuccess) {
+                    alert("Registered successfully!");
+                } else {
+                    alert("Error while registering. Please try again.");
+                }
+            }
+        </script>
 </body>
 
 </html>

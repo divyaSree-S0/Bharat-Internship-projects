@@ -1,12 +1,15 @@
 
 body {
+    margin-right: 135px; 
     background-image: url('/Backgnd.jpg');
+    /* background-size: 1350px 900px; */
     background-size: cover;
     /* background-image: url('/Bkgd.jpg'); */
     /* background-color: rgb(133, 143, 197); */
     display: flex;
     justify-content: center;
     align-items: center;
+    background-position: -85px -55px;
 }
 /* @font-face {
         font-family: 'Aloevera';
@@ -18,24 +21,28 @@ div{
     padding: 25px;   
     /* font: 15px baskerville old face;         */
     font: 20px papyrus;
-    border-radius: 6px;
+    border-radius: 13px;
     /* height: 75vh; */
     min-height: 65vh; 
     max-height: 75vh; 
     overflow: auto;
     width: 100%; 
-    max-width: 525px; 
+    max-width: 455px; 
     margin: auto;
-    margin-top: 5%;
+    margin-top: 1.5%;
     margin-left: 43%;
     /* margin: 10% 20% 20% 25%; */
    
     /* font-family: 'Aloevera';
     src: url('Aloevera.ttf'); */
 }
+div h1{
+    margin-bottom: 15px;
+}
 div label{
     /* font-weight: bold; */
-    font: 20px baskerville old face;
+    text-align: left;
+    font: 23px baskerville old face;
     margin-right: 25px;
     /* display: block;  */
     padding-left: 15px;
@@ -43,29 +50,78 @@ div label{
 div input {
     /* width: 250px;
     height: 35px; */
-    padding: 10px 100px 10px 0px;
+    /* text-align: right; */
+    float: right;
+    padding: 10px 100px 10px 5px;
     background-color: rgba(31, 3, 66, 0.692); 
     color: rgb(255, 255, 255);
     border: none; 
+    border-radius: 6px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    /* direction: rtl; */
     /* width: 100%; */
 }
 div input[type="date"]{
-    padding: 10px 15px 10px 0px;
+    margin-left: 7.5%;
+    padding: 10px 15px 10px 2%;
+    float: none;
+}
+div input:hover,:focus{
+    background-color: rgba(18, 2, 38, 0.818);
 }
 
 div button {
-    width: 75px;
+    width: 80px;
     height: 45px;
     display: block; 
     font-size: 20px;
     font-family: Georgia, 'Times New Roman', Times, serif;
     margin: 20px auto 0;
-    background-color: rgb(74, 218, 86); 
+    background-color: rgb(110, 91, 206); 
+    /* background-color: rgb(201, 141, 45);  */
     color: rgb(255, 255, 255); 
-    border: none; /* Remove default border */
+    border: none;   
+    border-radius: 6px;
 }
+div button:hover{
+        background-color: rgba(201, 123, 45, 0.778);
+        border-radius: 20px;
+    }
 
 div input[type="text"]:not(:last-of-type) {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5); /* Line between inputs */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5); 
+}
+hr {
+    margin-bottom: 35px;
+    border: none;
+    height: 1px;
+    width: 445px;
+    background-color: rgba(255, 255, 255, 0.504); 
+}
+
+@media only screen and (max-width: 950px) and (max-height: 900px) {
+    body {
+        margin-right: 20px; 
+        background-size: cover;
+    }
+
+    div {
+        padding: 15px; 
+        font-size: 16px; 
+        margin-left: 0;
+        max-width: 100%;
+    }
+
+    div input {
+        padding: 5px 65px 10px 2px; 
+    }
+
+    div input[type="date"] {
+        margin-left: 0;
+        padding: 5px 7px 5px 0px; 
+    }
+
+    hr {
+        width: 100%;
+    }
 }
