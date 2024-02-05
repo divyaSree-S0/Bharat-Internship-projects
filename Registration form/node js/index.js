@@ -7,7 +7,12 @@ mongoose.connect('mongodb://localhost:27017/', { useNewUrlParser: true, useUnifi
 
 const userSchema = new mongoose.Schema({
     name: String,
-    username: String,
+    username: {
+        type:String,
+        unique:true,
+        minlength:5,
+        maxlength:50
+    },
     password: String,
     email: String,
     dob: Date
@@ -39,6 +44,19 @@ app.post('/', async(req,res)=>{
             email: req.body.email,
             dob: req.body.dob
         });
+        const validationResult = newUser.validateSync();
+        if (validationResult && validationResult.errors.username) {
+            return res.render('registration', {
+                isSuccess: false,
+                usernameError: "Username should be unique and have a length of 5-50 characters."
+                // usernameError: validationResult.errors.username.message
+            });
+        }
+        // const validationResult = newUser.validateSync();
+        // if (validationResult) {
+        //     return res.render('registration', { isSuccess: false, errorMessage: 'Username already exists.' });
+        // }
+
         await newUser.save();
         res.render('registration', { isSuccess: true });
         // res.redirect('/');

@@ -17,11 +17,17 @@
             <% } else if (isSuccess === false) { %>
                 <p style="color: red;">Error while registering. Please try again.</p>
             <% } %> -->
-            <form action="/" method="POST">
+            <form action="/" method="POST" onsubmit="return validateForm()">
             <label for="name">Name</label>
             <input type="text" name="name" id="name" placeholder=" Enter your name" required><br><br>
             <label for="username">Username</label>
             <input type="text" name="username" id="username" placeholder=" Enter a username" required><br><br>
+            <% if (typeof usernameError !== 'undefined') { %>
+                <script>
+                    var errorMessage = "<%= usernameError %>";
+                    alert(errorMessage);
+                </script>
+            <% } %>
             <label for="password">Password</label>
             <input type="password" name="password" id="password" placeholder=" Enter your password" required><br><br>
             <label for="email">E-mail</label>
@@ -33,20 +39,55 @@
         </form>
         </div>
         <script>
-            document.getElementById('submit').addEventListener('click', async function () {
-                try {
-                    const response = await fetch('/', { method: 'POST' });
-                    // const data = await response.json();
-        
-                    if (response.ok) {
-                        alert('Registered successfully!');
-                    } else {
-                        alert('Error while registering. Please try again.');
-                    }
-                } catch (error) {
-                    console.error('Error:', error);
+             async function validateForm() {
+            try {
+                const name = document.getElementById('name').value;
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                const email = document.getElementById('email').value;
+                const dob = document.getElementById('dob').value;
+
+                if (!name || !username || !password || !email || !dob) {
+                    alert('Please fill in all required fields.');
+                    return false;
                 }
-            });
+
+                const response = await fetch('/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ name, username, password, email, dob }),
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    alert('Registered successfully!');
+                    return true;
+                } else {
+                    alert('Error while registering. Please try again.');
+                    return false;
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                return false;
+            }
+        }
+            // document.getElementById('submit').addEventListener('click', async function () {
+            //     try {
+            //         const response = await fetch('/', { method: 'POST' });
+            //         // const data = await response.json();
+        
+            //         if (response.ok) {
+            //             alert('Registered successfully!');
+            //         } else {
+            //             alert('Error while registering. Please try again.');
+            //         }
+            //     } catch (error) {
+            //         console.error('Error:', error);
+            //     }
+            // });
         </script>
         
         
