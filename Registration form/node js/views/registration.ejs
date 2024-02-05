@@ -12,15 +12,20 @@
         <div>
             <h1>Registration form</h1>
             <hr style="border-top: 1px solid rgba(255, 255, 255, 0.756);">
+            <!-- <% if (isSuccess === true) { %>
+                <p style="color: green;">Registered successfully!</p>
+            <% } else if (isSuccess === false) { %>
+                <p style="color: red;">Error while registering. Please try again.</p>
+            <% } %> -->
             <form action="/" method="POST">
             <label for="name">Name</label>
-            <input type="text" name="name" id="name" placeholder=" Enter your name"><br><br>
+            <input type="text" name="name" id="name" placeholder=" Enter your name" required><br><br>
             <label for="username">Username</label>
-            <input type="text" name="username" id="username" placeholder=" Enter a username"><br><br>
+            <input type="text" name="username" id="username" placeholder=" Enter a username" required><br><br>
             <label for="password">Password</label>
-            <input type="password" name="password" id="password" placeholder=" Enter your password"><br><br>
+            <input type="password" name="password" id="password" placeholder=" Enter your password" required><br><br>
             <label for="email">E-mail</label>
-            <input type="text" name="email" id="email" placeholder=" Enter your email"><br><br>
+            <input type="text" name="email" id="email" placeholder=" Enter your email" required><br><br>
             <label for="dob">Date of birth</label>
             <input type="date" name="dob" id="dob" placeholder=" Enter your date of birth"><br><br>
             <hr style="border-top: 1px solid rgba(255, 255, 255, 0.756);">
@@ -31,9 +36,9 @@
             document.getElementById('submit').addEventListener('click', async function () {
                 try {
                     const response = await fetch('/', { method: 'POST' });
-                    const data = await response.json();
+                    // const data = await response.json();
         
-                    if (data.success) {
+                    if (response.ok) {
                         alert('Registered successfully!');
                     } else {
                         alert('Error while registering. Please try again.');
