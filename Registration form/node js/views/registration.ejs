@@ -11,12 +11,245 @@
 <body>
         <div>
             <h1>Registration form</h1>
+            <hr style="border-top: 1px solid rgba(255, 255, 255, 0.756);"> 
+            <form action="/" method="POST">
+            <!-- <form action="/" method="POST" onsubmit="return validateForm()"> -->
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" placeholder=" Enter your name" required><br><br>
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" placeholder=" Enter a username" required><br><br>
+            <% if (typeof usernameError !== 'undefined') { %>
+                <script>
+                    var errorMessage = "<%= usernameError %>";
+                    alert(errorMessage);
+                </script>
+            <% } %>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" placeholder=" Enter your password" required><br><br>
+            <label for="email">E-mail</label>
+            <input type="text" name="email" id="email" placeholder=" Enter your email" required><br><br>
+            <label for="dob">Date of birth</label>
+            <input type="date" name="dob" id="dob" placeholder=" Enter your date of birth"><br><br>
             <hr style="border-top: 1px solid rgba(255, 255, 255, 0.756);">
-            <!-- <% if (isSuccess === true) { %>
-                <p style="color: green;">Registered successfully!</p>
-            <% } else if (isSuccess === false) { %>
-                <p style="color: red;">Error while registering. Please try again.</p>
-            <% } %> -->
+            <button type="submit" name="submit" id="submit" onclick=" return validateForm()">Submit</button>
+            <!-- <button type="submit" name="submit" id="submit">Submit</button> -->
+        </form>
+        </div>
+
+<script>
+    async function validateForm() {
+        try {
+            const name = document.getElementById('name').value;
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const email = document.getElementById('email').value;
+            const dob = document.getElementById('dob').value;
+
+            if (!name || !username || !password || !email || !dob) {
+                alert('Please fill in all required fields.');
+                return false;
+            }
+            const response = await fetch('/',{
+                method:'POST'
+            });
+            if(response.ok){
+                alert('Registered successfully!');
+                return true;
+            }
+            else{
+                alert('Error while registering. Please try again.');
+                return false;}
+            // return true;
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Error while registering. Please try again.');
+            return false;
+        }
+    }
+
+
+
+
+//     async function validateForm() {
+//     try {
+//         const name = document.getElementById('name').value;
+//         const username = document.getElementById('username').value;
+//         const password = document.getElementById('password').value;
+//         const email = document.getElementById('email').value;
+//         const dob = document.getElementById('dob').value;
+
+//         if (!name || !username || !password || !email || !dob) {
+//             alert('Please fill in all required fields.');
+//             return false;
+//         }
+
+//         // const response = await fetch('/', {
+//         //     method: 'POST',
+//         //     headers: {
+//         //         'Content-Type': 'application/json',
+//         //     },
+//         //     body: JSON.stringify({ name, username, password, email, dob }),
+//         // });
+//         const response = await fetch('/',{method:'POST'});
+
+//         if (response.ok) {
+//             const data = await response.json();
+//             if (data.success) {
+//                 alert('Registered successfully!');
+//                 document.getElementById('registrationForm').reset();
+//                 return true;
+//             } else {
+//                 alert(data.usernameError || 'Error while registering. Please try again.1');
+//                 return false;
+//             }
+//         } else {
+//             alert('Error while registering. Please try again.2');
+//             return false;
+//         }
+//     } catch (error) {
+//         console.error('Error:', error);
+//         alert('Error while registering. Please try again.3');
+//         return false;
+//     }
+// }
+
+
+
+    // async function validateForm() {
+    //     try {
+    //         const name = document.getElementById('name').value;
+    //         const username = document.getElementById('username').value;
+    //         const password = document.getElementById('password').value;
+    //         const email = document.getElementById('email').value;
+    //         const dob = document.getElementById('dob').value;
+
+    //         if (!name || !username || !password || !email || !dob) {
+    //             alert('Please fill in all required fields.');
+    //             return false;
+    //         }
+
+    //         const response = await fetch('/', {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //             },
+    //             body: JSON.stringify({ name, username, password, email, dob }),
+    //         });
+
+    //         if (response.ok) {
+    //             const data = await response.json();
+    //             if (data.success) {
+    //                 alert('Registered successfully!');
+    //                 return true;
+    //             } else {
+    //                 alert(data.usernameError || 'Error while registering. Please try again.1');
+    //                 return false;
+    //             }
+    //         } else {
+    //             alert('Error while registering. Please try again.2');
+    //             return false;
+    //         }
+    //     } catch (error) {
+    //         console.error('Error:', error);
+    //         alert('Error while registering. Please try again.3');
+    //         return false;
+    //     }
+    // }
+</script>
+
+        <!-- <script>
+            async function validateForm() {
+            try {
+                const name = document.getElementById('name').value;
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                const email = document.getElementById('email').value;
+                const dob = document.getElementById('dob').value;
+
+                // if (!name || !username || !password || !email || !dob) {
+                //     alert('Please fill in all required fields.');
+                //     return false;
+                // }
+
+                const response = await fetch('/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ name, username, password, email, dob }),
+                });
+                console.log('Server response:', response);
+
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.success) {
+                        alert('Registered successfully!');
+                        return true;
+                    } else {
+                        alert('Error while registering. Please try again.1');
+                        return false;
+                    }
+                } else {
+                    alert('Error while registering. Please try again.2');
+                    return false;
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error while registering. Please try again.3');
+                return false;
+            }
+    }
+            // document.getElementById('submit').addEventListener('click', async function () {
+            //     try {
+            //         const response = await fetch('/', { method: 'POST' });
+            //         // const data = await response.json();
+        
+            //         if (response.ok) {
+            //             alert('Registered successfully!');
+            //         } else {
+            //             alert('Error while registering. Please try again.');
+            //         }
+            //     } catch (error) {
+            //         console.error('Error:', error);
+            //     }
+            // });
+        </script> -->
+        
+        
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration form</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+        <div>
+            <h1>Registration form</h1>
+            <hr style="border-top: 1px solid rgba(255, 255, 255, 0.756);">
             <form action="/" method="POST" onsubmit="return validateForm()">
             <label for="name">Name</label>
             <input type="text" name="name" id="name" placeholder=" Enter your name" required><br><br>
@@ -67,6 +300,8 @@
                     return true;
                 } else {
                     alert('Error while registering. Please try again.');
+                    // console.log(data.error);
+                    console.log(data)
                     return false;
                 }
             } catch (error) {
@@ -93,4 +328,4 @@
         
 </body>
 
-</html>
+</html> -->
