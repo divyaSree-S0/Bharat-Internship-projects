@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= post.title %></title>
     <link rel="stylesheet" href="/styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Nova Flat' rel='stylesheet'>
 </head>
 
 <body>
@@ -14,7 +15,8 @@
     <main>
         <div>
             Published on <%= post.date.toDateString() %> by <%= post.author %>
-            <a href="javascript:history.back()">Back</a>
+            <a href="/blog">Back</a>
+            <!-- <a href="javascript:history.back()">Back</a> -->
             
         </div>
     <article>

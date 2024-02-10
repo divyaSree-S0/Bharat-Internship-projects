@@ -7,7 +7,7 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 
-// Connect to MongoDB
+
 mongoose.connect('mongodb://localhost:27017/Bharat-internship', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log("Connected successfully to MongoDB");
@@ -16,8 +16,9 @@ mongoose.connect('mongodb://localhost:27017/Bharat-internship', { useNewUrlParse
         console.error('Error connecting to MongoDB:', error);
     });
 
-// Define the post schema
+
 const postSchema = new mongoose.Schema({
+    id : Number,
     title: String,
     author: String,
     date: { type: Date, default: Date.now },
@@ -25,12 +26,13 @@ const postSchema = new mongoose.Schema({
     excerpt: String,
 });
 
-// Create the Post model
+
 const Post = mongoose.model('Post', postSchema);
 
-// Sample data (you can replace this with actual data from your database)
+
 const samplePosts = [
     {
+        // id: 1,
         title: 'Sample Post 1',
         author: 'John Doe',
         date: new Date(),
@@ -38,6 +40,7 @@ const samplePosts = [
         excerpt: 'A short excerpt of the first blog post...',
     },
     {
+        // id: 2,
         title: 'Sample Post 2',
         author: 'Jane Doe',
         date: new Date(),
@@ -46,7 +49,7 @@ const samplePosts = [
     },
 ];
 
-// Insert sample data into the database
+
 Post.insertMany(samplePosts)
     .then(() => {
         console.log('Sample posts inserted into the database');
@@ -55,13 +58,12 @@ Post.insertMany(samplePosts)
         console.error('Error inserting sample posts:', error);
     });
 
-// Set up routes
 app.get('/', (req, res) => {
     res.render('home');
 });
 
 app.get('/blog', (req, res) => {
-    // Retrieve posts from the database and render the blog page
+    
     Post.find()
         .then(posts => {
             res.render('blog', { posts });
@@ -74,7 +76,6 @@ app.get('/blog', (req, res) => {
 
 app.get('/post/:postId', (req, res) => {
     const postId = req.params.postId;
-    // Retrieve a single post from the database based on postId
     Post.findById(postId)
         .then(post => {
             if (!post) {
@@ -85,6 +86,43 @@ app.get('/post/:postId', (req, res) => {
         })
         .catch(error => {
             console.error('Error retrieving post from the database:', error);
+            res.status(500).send('Internal Server Error');
+        });
+});
+
+app.get('/posts/:postId/edit', (req, res) => {
+    const postId = req.params.postId;
+    Post.findById(postId)
+        .then(post => {
+            if (!post) {
+                res.status(404).render('404');
+            } else {
+                res.render('edit', { post });
+            }
+        })
+        .catch(error => {
+            console.error('Error retrieving post for edit from the database:', error);
+            res.status(500).send('Internal Server Error');
+        });
+});
+
+
+app.post('/posts/:postId', (req, res) => {
+    const postId = req.params.postId;
+    
+    Post.findByIdAndUpdate(postId, {
+        title: req.body.title,
+        content: req.body.content,
+    }, { new: true })
+        .then(updatedPost => {
+            if (!updatedPost) {
+                res.status(404).render('404');
+            } else {
+                res.redirect(`/post/${updatedPost._id}`);
+            }
+        })
+        .catch(error => {
+            console.error('Error updating post in the database:', error);
             res.status(500).send('Internal Server Error');
         });
 });
