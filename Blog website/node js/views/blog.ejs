@@ -10,9 +10,10 @@
 </head>
 
 <body>
-    <%- include('C:\\Users\\dcosi\\Code files\\VS code files\\Bharat internship projects\\Bharat-Internship-projects\\Blog website\\node js\\views\\header.ejs') %>
+    <%- include('header.ejs') %>
     <h1 style="padding-bottom: 10px;">Welcome to My Blog</h1>
     <section style="text-align: center;padding: 10px;">
+        <a href="/posts/new">New Post</a>
         <a href="/blog">All posts</a>
         <a href="/blog">Top posts</a>
         <a href="/blog">Favourites</a>
@@ -24,6 +25,7 @@
                 <p>Published on <%= post.date.toDateString() %> by <%= post.author %></p>
                 <p><%= post.excerpt %></p>
                 <a href="/post/<%= post._id %>">Read more</a>
+                <a href="/posts/<%= post._id %>/edit">Edit</a>
             </article>
         <% }); %>
     </main>

@@ -89,6 +89,10 @@ app.get('/post/:postId', (req, res) => {
         });
 });
 
+app.get('/about', (req, res) => {
+    res.render('about');
+});
+
 // 404 route
 app.use((req, res) => {
     res.status(404).render('404');
