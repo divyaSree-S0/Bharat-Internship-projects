@@ -4,7 +4,12 @@ const bcrypt = require('bcrypt');
 const app=express();
 const port = 3000;
 
-mongoose.connect('mongodb://localhost:27017/', { useNewUrlParser: true, useUnifiedTopology: true });
+const dbName = 'Bharat-internship';
+    const collectionName = 'Users_registration';
+    const url = `mongodb://localhost:27017/${dbName}`;
+
+mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect('mongodb://localhost:27017/', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const userSchema = new mongoose.Schema({
     name: String,
@@ -23,7 +28,7 @@ const userSchema = new mongoose.Schema({
     dob: Date
   });
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model(collectionName, userSchema);
 
 app.set('view engine','ejs');
 app.use(express.static('public'));

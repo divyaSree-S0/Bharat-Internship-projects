@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog</title>
+    <link rel="stylesheet" href="/styles.css">
+    
+</head>
+
+<body>
+    <%- include('C:\\Users\\dcosi\\Code files\\VS code files\\Bharat internship projects\\Bharat-Internship-projects\\Blog website\\node js\\views\\header.ejs') %>
+    <h1 style="padding-bottom: 10px;">Welcome to My Blog</h1>
+    <section style="text-align: center;padding: 10px;">
+        <a href="/blog">All posts</a>
+        <a href="/blog">Top posts</a>
+        <a href="/blog">Favourites</a>
+    </section>
+    <main>
+        <% posts.forEach(post => { %>
+            <article>
+                <h2><%= post.title %></h2>
+                <p>Published on <%= post.date.toDateString() %> by <%= post.author %></p>
+                <p><%= post.excerpt %></p>
+                <a href="/post/<%= post._id %>">Read more</a>
+            </article>
+        <% }); %>
+    </main>
+
+    <footer>
+        
+    </footer>
+</body>
+
+</html>
