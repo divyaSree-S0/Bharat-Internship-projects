@@ -30,34 +30,6 @@ const postSchema = new mongoose.Schema({
 const Post = mongoose.model('Post', postSchema);
 
 
-// const samplePosts = [
-//     {
-//         // id: 1,
-//         title: 'Sample Post 1',
-//         author: 'John Doe',
-//         date: new Date(),
-//         content: 'This is the content of the first blog post...',
-//         excerpt: 'A short excerpt of the first blog post...',
-//     },
-//     {
-//         // id: 2,
-//         title: 'Sample Post 2',
-//         author: 'Jane Doe',
-//         date: new Date(),
-//         content: 'This is the content of the second blog post...',
-//         excerpt: 'A short excerpt of the second blog post...',
-//     },
-// ];
-
-
-// Post.insertMany(samplePosts)
-//     .then(() => {
-//         console.log('Sample posts inserted into the database');
-//     })
-//     .catch(error => {
-//         console.error('Error inserting sample posts:', error);
-//     });
-
 app.get('/', (req, res) => {
     res.render('home');
 });
